@@ -7,7 +7,6 @@ class Todo extends Component {
         item: []
     }
 
-
     componentDidMount() {
         fetch('http://127.0.0.1:8000/api', {
             method: 'GET',
@@ -25,24 +24,22 @@ class Todo extends Component {
 
 
     render() {
+        let data = this.state.item.map((elem, index) =>{
+            let {employee_email, emplyee_name, emplyee_regNo} = elem;
+            return(
+                <div key ={index}>
+                    <ul>{employee_email}</ul>
+                    <ul>{emplyee_name}</ul>
+                    <ul>{emplyee_regNo}</ul>
+                    
+                </div>
+            )
+        })
      
         return (
 
-            <div>
-                {
-                    this.state.item.map((el, ind) =>{
-                        let{employee_email, emplyee_name, emplyee_regNo} = el
-                        return(
-                            <div key={ind}>
-                                <ul>
-                                    <li>{employee_email}</li>
-                                    <li>{emplyee_name}</li>
-                                    <li>{emplyee_regNo}</li>
-                                </ul>
-                            </div>
-                        )
-                    })
-                }
+            <div style={{color:'red'}}>
+               Dates {data}
             </div>
         );
     }
